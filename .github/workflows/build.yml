@@ -1,0 +1,29 @@
+name: Compilar AOSP 7
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorios
+        run: |
+          git clone https://github.com/FranciscoTuUsuario/platform_build.git
+          git clone https://github.com/FranciscoTuUsuario/platform_frameworks_base.git
+          git clone https://github.com/FranciscoTuUsuario/platform_packages_apps_Settings.git
+          git clone https://github.com/FranciscoTuUsuario/platform_system_core.git
+
+      - name: Instalar dependencias
+        run: |
+          sudo apt update
+          sudo apt install openjdk-8-jdk python git-core -y
+
+      - name: Configurar entorno
+        run: |
+          cd platform_build
+          source envsetup.sh
+          lunch aosp_arm-eng
+
+      - name: Compilar
+        run: |
+          make -j$(nproc)
