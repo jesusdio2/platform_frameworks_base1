@@ -9,7 +9,7 @@ jobs:
       - name: Clonar repositorios
         run: |
           git clone https://github.com/Jesusdio2/platform_build.git
-          git clone https://github.com/Jesusdio2/platform_frameworks_base.git
+          git clone https://github.com/Jesusdio2/platform_frameworks_base1.git
           git clone https://github.com/Jesusdio2/platform_packages_apps_Settings.git
           git clone https://github.com/Jesusdio/platform_system_core.git
 
