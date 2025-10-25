@@ -8,10 +8,10 @@ jobs:
     steps:
       - name: Clonar repositorios
         run: |
-          git clone https://github.com/FranciscoTuUsuario/platform_build.git
-          git clone https://github.com/FranciscoTuUsuario/platform_frameworks_base.git
-          git clone https://github.com/FranciscoTuUsuario/platform_packages_apps_Settings.git
-          git clone https://github.com/FranciscoTuUsuario/platform_system_core.git
+          git clone https://github.com/Jesusdio2/platform_build.git
+          git clone https://github.com/Jesusdio2/platform_frameworks_base.git
+          git clone https://github.com/Jesusdio2/platform_packages_apps_Settings.git
+          git clone https://github.com/Jesusdio/platform_system_core.git
 
       - name: Instalar dependencias
         run: |
