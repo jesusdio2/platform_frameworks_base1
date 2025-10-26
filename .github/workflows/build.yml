@@ -13,10 +13,24 @@ jobs:
           git clone https://github.com/Jesusdio2/platform_packages_apps_Settings.git
           git clone https://github.com/Jesusdio2/platform_system_core.git
 
-      - name: Instalar dependencias
+      - name: Instalar dependencias y compilar Python 2
         run: |
           sudo apt update
-          sudo apt install openjdk-8-jdk python2 python-is-python2 git-core -y
+          sudo apt install -y openjdk-8-jdk build-essential libssl-dev zlib1g-dev \
+            libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev \
+            libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev \
+            tk-dev wget git-core
+
+          wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
+          tar xvf Python-2.7.18.tgz
+          cd Python-2.7.18
+          ./configure --prefix=/usr/local/python2
+          make -j$(nproc)
+          sudo make install
+
+          sudo ln -sf /usr/local/python2/bin/python2 /usr/bin/python
+          python --version
+
       - name: Configurar entorno
         run: |
           cd platform_build
