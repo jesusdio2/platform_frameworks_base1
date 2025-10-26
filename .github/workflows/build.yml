@@ -6,12 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clonar repositorios
+      - name: Clonar repositorios en estructura AOSP
         run: |
-          git clone https://github.com/Jesusdio2/platform_build.git
-          git clone https://github.com/Jesusdio2/platform_frameworks_base1.git
-          git clone https://github.com/Jesusdio2/platform_packages_apps_Settings.git
-          git clone https://github.com/Jesusdio2/platform_system_core.git
+          mkdir aosp7 && cd aosp7
+          git clone https://github.com/Jesusdio2/platform_build.git build
+          git clone https://github.com/Jesusdio2/platform_frameworks_base1.git frameworks/base
+          git clone https://github.com/Jesusdio2/platform_packages_apps_Settings.git packages/apps/Settings
+          git clone https://github.com/Jesusdio2/platform_system_core.git system/core
 
       - name: Instalar dependencias y compilar Python 2
         run: |
@@ -31,12 +32,13 @@ jobs:
           sudo ln -sf /usr/local/python2/bin/python2 /usr/bin/python
           python --version
 
-      - name: Configurar entorno
+      - name: Configurar entorno AOSP
         run: |
-          cd platform_build
-          source envsetup.sh
+          cd aosp7
+          source build/envsetup.sh
           lunch aosp_arm-eng
 
-      - name: Compilar
+      - name: Compilar AOSP
         run: |
+          cd aosp7
           make -j$(nproc)
