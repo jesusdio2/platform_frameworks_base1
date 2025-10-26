@@ -16,8 +16,7 @@ jobs:
       - name: Instalar dependencias
         run: |
           sudo apt update
-          sudo apt install openjdk-8-jdk python git-core -y
-
+          sudo apt install openjdk-8-jdk python2 python-is-python2 git-core -y
       - name: Configurar entorno
         run: |
           cd platform_build
