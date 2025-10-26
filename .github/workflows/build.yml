@@ -33,12 +33,12 @@ jobs:
           python --version
 
       - name: Configurar entorno AOSP
+        working-directory: aosp7
         run: |
-          cd aosp7
           source build/envsetup.sh
           lunch aosp_arm-eng
 
       - name: Compilar AOSP
+        working-directory: aosp7
         run: |
-          cd aosp7
           make -j$(nproc)
